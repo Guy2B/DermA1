@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lune Beauty — Skin AI</title>
+  <title>Skin AI Analyse — Lune Beauty (Local)</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/app.css" />
 </head>
 <body>
-  <!-- GDPR MODAL (Session only) -->
+  <!-- GDPR Modal (Session only) -->
   <div id="gdpr" class="modal hidden" aria-hidden="true">
     <div class="modal-card">
       <h3>Datennutzung (nur Sitzung)</h3>
-      <p>Dein Foto wird ausschließlich zur Analyse genutzt und lokal im Browser gespeichert. Es wird nicht dauerhaft gespeichert.</p>
+      <p>Dein Foto wird ausschließlich lokal im Browser verarbeitet. Keine Verbindung zu externen Servern.</p>
       <button id="gdprAccept" class="btn primary">Akzeptieren &amp; Fortfahren</button>
     </div>
   </div>
@@ -23,13 +23,10 @@
       <img src="assets/img/logo.png" alt="Lune Beauty"/>
       <span>Skin AI</span>
     </div>
-    <nav class="nav">
-      <a href="index.html">Zur Startseite</a>
-    </nav>
+    <nav class="nav"><a href="index.html">Zur Startseite</a></nav>
   </header>
 
   <main class="container">
-    <!-- STEP PROGRESS -->
     <ol class="steps" id="steps">
       <li class="active">1 Foto</li>
       <li>2 Analyse</li>
@@ -38,7 +35,7 @@
       <li>5 Danke</li>
     </ol>
 
-    <!-- STEP 1: CAPTURE -->
+    <!-- STEP 1: CAPTURE / UPLOAD -->
     <section id="step1" class="panel step active">
       <h2>Schritt 1 — Foto aufnehmen</h2>
       <p class="hint">Bitte zentriere dein Gesicht in der ovalen Markierung. Gutes Licht ohne Schatten hilft dem Ergebnis.</p>
@@ -54,35 +51,25 @@
       <div class="row">
         <button id="btnStartCam" class="btn primary">📷 Kamera starten</button>
         <button id="btnFlipCam" class="btn">🔁 Kamera wechseln</button>
-        <label class="btn file">
-          📁 Foto hochladen
-          <input type="file" id="fileInput" accept="image/*" hidden />
-        </label>
+        <label class="btn file">📁 Foto hochladen<input type="file" id="fileInput" accept="image/*" hidden /></label>
         <button id="btnCapture" class="btn" disabled>📸 Aufnehmen</button>
       </div>
-
-      <!-- Permission error alt -->
       <p id="permMsg" class="perm hidden">Kamerazugriff nicht möglich. Du kannst stattdessen ein Foto hochladen.</p>
     </section>
 
-    <!-- PREVIEW MODAL AFTER CAPTURE -->
+    <!-- PREVIEW MODAL -->
     <div id="previewModal" class="modal hidden">
       <div class="modal-card preview">
         <canvas id="previewCan" width="720" height="720"></canvas>
-        <div class="row">
-          <button id="btnUsePhoto" class="btn primary">Dieses Foto verwenden</button>
-          <button id="btnRetake" class="btn subtle">Erneut aufnehmen</button>
-        </div>
+        <div class="row"><button id="btnUsePhoto" class="btn primary">Dieses Foto verwenden</button><button id="btnRetake" class="btn subtle">Erneut aufnehmen</button></div>
       </div>
     </div>
 
-    <!-- STEP 2: ANALYSIS -->
+    <!-- STEP 2: LOCAL ANALYSIS -->
     <section id="step2" class="panel step">
-      <h2>Schritt 2 — Analyse</h2>
-      <p class="hint">Wir senden dein Foto an unseren Serverless‑Dienst und erhalten eine Auswertung.</p>
-      <div class="row">
-        <button id="btnAnalyze" class="btn primary" disabled>⚙️ Analyse starten</button>
-      </div>
+      <h2>Schritt 2 — Analyse (lokal)</h2>
+      <p class="hint">Die Analyse findet vollständig **im Browser** statt. Es werden keine Daten an Server übertragen.</p>
+      <div class="row"><button id="btnAnalyze" class="btn primary" disabled>⚙️ Analyse starten</button></div>
 
       <div class="analysisWrap hidden" id="analysisWrap">
         <div class="gauge" id="gauge" aria-label="Score">
@@ -90,38 +77,23 @@
           <div class="score" id="score">–</div>
         </div>
         <div class="cards">
-          <div class="card" id="sumCard"><h3>Zusammenfassung</h3><p id="summary">–</p></div>
-          <div class="card" id="diagCard"><h3>Diagnostik</h3><ul id="diagnostics"></ul></div>
-          <div class="card" id="actCard"><h3>Empfohlene Wirkstoffe</h3><ul id="actives"></ul></div>
-          <div class="card" id="avoidCard"><h3>Vermeiden</h3><ul id="avoid"></ul></div>
+          <div class="card"><h3>Zusammenfassung</h3><p id="summary">–</p></div>
+          <div class="card"><h3>Diagnostik</h3><ul id="diagnostics"></ul></div>
+          <div class="card"><h3>Empfohlene Wirkstoffe</h3><ul id="actives"></ul></div>
+          <div class="card"><h3>Vermeiden</h3><ul id="avoid"></ul></div>
         </div>
-        <div class="ctaRow">
-          <button id="btnToStep3" class="btn primary">Weiter zu Schritt 3</button>
-        </div>
-      </div>
-
-      <div id="serverlessNote" class="note">
-        <p><strong>Hinweis:</strong> Hinterlege deine Endpoint‑URL in <code>window.LB_ENDPOINT</code> (siehe <code>assets/js/app.js</code>), damit die Analyse live funktioniert.</p>
+        <div class="ctaRow"><button id="btnToStep3" class="btn primary">Weiter zu Schritt 3</button></div>
       </div>
     </section>
 
-    <!-- STEP 3: MULTI‑STEP WIZARD -->
+    <!-- STEP 3: WIZARD (gleich wie v3) -->
     <section id="step3" class="panel step">
       <h2>Schritt 3 — Personalisierung</h2>
       <form id="wizForm" class="wizard">
-        <div class="wiz-step active" data-step="1">
-          <label>Hauttyp</label>
-          <select name="skinType" required>
-            <option value="">Bitte wählen</option>
-            <option>normal</option>
-            <option>dry</option>
-            <option>oily</option>
-            <option>combination</option>
-            <option>sensitive</option>
-          </select>
+        <div class="wiz-step active" data-step="1"><label>Hauttyp</label>
+          <select name="skinType" required><option value="">Bitte wählen</option><option>normal</option><option>dry</option><option>oily</option><option>combination</option><option>sensitive</option></select>
         </div>
-        <div class="wiz-step" data-step="2">
-          <label>Allergien (Mehrfachauswahl möglich)</label>
+        <div class="wiz-step" data-step="2"><label>Allergien</label>
           <div class="checkboxes">
             <label><input type="checkbox" name="allergies" value="None"> None</label>
             <label><input type="checkbox" name="allergies" value="Fragrance"> Fragrance</label>
@@ -132,65 +104,40 @@
             <label><input type="checkbox" name="allergies" value="Other"> Other…</label>
           </div>
         </div>
-        <div class="wiz-step" data-step="3">
-          <label>Prioritäten</label>
+        <div class="wiz-step" data-step="3"><label>Prioritäten</label>
           <div class="grid2">
             <select name="priority1" required><option value="">Priorität 1</option><option>Hydration</option><option>Oil Control</option><option>Anti‑Redness</option><option>Texture</option></select>
             <select name="priority2"><option value="">Priorität 2</option><option>Hydration</option><option>Oil Control</option><option>Anti‑Redness</option><option>Texture</option></select>
             <select name="priority3"><option value="">Priorität 3</option><option>Hydration</option><option>Oil Control</option><option>Anti‑Redness</option><option>Texture</option></select>
           </div>
         </div>
-        <div class="wiz-step" data-step="4">
-          <label>Budget</label>
-          <select name="budget" required>
-            <option value="">Bitte wählen</option>
-            <option>Low</option>
-            <option>Medium</option>
-            <option>High</option>
-          </select>
+        <div class="wiz-step" data-step="4"><label>Budget</label>
+          <select name="budget" required><option value="">Bitte wählen</option><option>Low</option><option>Medium</option><option>High</option></select>
         </div>
-        <div class="wiz-step" data-step="5">
-          <label>Aktuelle Routine</label>
+        <div class="wiz-step" data-step="5"><label>Aktuelle Routine</label>
           <textarea name="routine" rows="4" placeholder="Produkte / Reihenfolge / Verträglichkeit"></textarea>
         </div>
-        <div class="wiz-step" data-step="6">
-          <div class="grid2">
-            <input type="text" name="name" placeholder="Name" required />
-            <input type="number" name="age" placeholder="Alter" min="10" max="120" />
-            <select name="gender"><option value="">Gender (freiwillig)</option><option>Prefer not to say</option><option>Female</option><option>Male</option><option>Other</option></select>
-            <input type="email" name="email" placeholder="E‑Mail" required />
-          </div>
-        </div>
-        <div class="wiz-ctrl">
-          <button type="button" id="wizPrev" class="btn subtle">Zurück</button>
-          <button type="button" id="wizNext" class="btn primary">Weiter</button>
-        </div>
+        <div class="wiz-step" data-step="6"><div class="grid2">
+          <input type="text" name="name" placeholder="Name" required />
+          <input type="number" name="age" placeholder="Alter" min="10" max="120" />
+          <select name="gender"><option value="">Gender (freiwillig)</option><option>Prefer not to say</option><option>Female</option><option>Male</option><option>Other</option></select>
+          <input type="email" name="email" placeholder="E‑Mail" required />
+        </div></div>
+        <div class="wiz-ctrl"><button type="button" id="wizPrev" class="btn subtle">Zurück</button><button type="button" id="wizNext" class="btn primary">Weiter</button></div>
       </form>
     </section>
 
-    <!-- STEP 4: PAYMENT (PayPal) -->
-    <section id="step4" class="panel step">
-      <h2>Schritt 4 — Zahlung</h2>
-      <p class="hint">Wähle deinen Plan:</p>
-      <div id="paypal-standard" class="pay-card">
-        <h3>Standard</h3>
-        <div class="paypal-btn" id="ppStd"></div>
-      </div>
-      <div id="paypal-premium" class="pay-card">
-        <h3>Premium</h3>
-        <div class="paypal-btn" id="ppPrem"></div>
-      </div>
-      <p class="note">PayPal JS SDK wird in diesem Schritt geladen. Füge deine <code>CLIENT_ID</code> in <code>assets/js/app.js</code> ein.</p>
+    <!-- STEP 4: PAYMENT (wie v3, SDK on-demand) -->
+    <section id="step4" class="panel step"><h2>Schritt 4 — Zahlung</h2>
+      <div id="paypal-standard" class="pay-card"><h3>Standard</h3><div class="paypal-btn" id="ppStd"></div></div>
+      <div id="paypal-premium" class="pay-card"><h3>Premium</h3><div class="paypal-btn" id="ppPrem"></div></div>
+      <p class="note">PayPal JS SDK wird hier geladen. Setze <code>window.PAYPAL_CLIENT_ID</code> in <code>assets/js/app.local.js</code>.</p>
     </section>
 
     <!-- STEP 5: THANK YOU -->
-    <section id="step5" class="panel step">
-      <h2>Vielen Dank!</h2>
-      <p>Dein Kauf wurde gespeichert. Wir haben eine Zusammenfassung lokal abgelegt.</p>
-      <a href="index.html" class="btn primary">Zurück zur Hauptseite</a>
-    </section>
+    <section id="step5" class="panel step"><h2>Vielen Dank!</h2><p>Dein Kauf wurde gespeichert. Zusammenfassung liegt lokal.</p><a href="index.html" class="btn primary">Zurück zur Hauptseite</a></section>
   </main>
 
-  <script type="module" src="assets/js/app.js"></script>
+  <script type="module" src="assets/js/app.local.js"></script>
 </body>
 </html>
