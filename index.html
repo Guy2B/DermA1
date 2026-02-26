@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lune Beauty — Premium Experience</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+</head>
+<body>
+  <div id="scrollProgress" aria-hidden="true"></div>
+  <div class="lensflare" id="lensflare" aria-hidden="true"></div>
+
+  <!-- NAVIGATION -->
+  <nav class="top-nav">
+    <div class="nav-divider" aria-hidden="true"></div>
+    <div class="nav-inner">
+      <a href="#hero" aria-label="Lune Beauty"><img src="assets/img/logo.png" class="brand-logo" alt="Lune Beauty" /></a>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#services">Leistungen</a></li>
+        <li><a href="#pricing">Preise</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+        <li><a href="app.html">Skin AI</a></li>
+        <li><a href="dashboard.html">Staff</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="hero" class="hero parallax reveal-up">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-particles" aria-hidden="true"></div>
+    <div class="hero-content">
+      <img src="assets/img/logo.png" class="hero-logo" alt="Lune Beauty" />
+      <h1 class="hero-title">Lune Beauty — Your Luxury Experience</h1>
+      <p class="hero-sub">Luxuriöse Behandlungen & moderne Hautanalyse.</p>
+    </div>
+  </header>
+
+  <!-- SERVICES -->
+  <section id="services" class="section reveal-up">
+    <div class="section-inner">
+      <h2 class="section-title">Behandlungen & Services</h2>
+      <div class="services-grid">
+        <article class="service-card" data-target="acc-face">
+          <img src="assets/img/gesichtsbehandlung.png" alt="Gesichtsbehandlung" />
+          <h3>Gesichtsbehandlung</h3>
+        </article>
+        <article class="service-card" data-target="acc-body">
+          <img src="assets/img/koerperbehandlung.png" alt="Körperbehandlung" />
+          <h3>Körperbehandlung</h3>
+        </article>
+        <article class="service-card" data-target="acc-massage">
+          <img src="assets/img/massagen.png" alt="Massagen" />
+          <h3>Massagen</h3>
+        </article>
+        <article class="service-card" data-target="acc-mani">
+          <img src="assets/img/manikuere.png" alt="Maniküre" />
+          <h3>Maniküre</h3>
+        </article>
+        <article class="service-card" data-target="acc-eye">
+          <img src="assets/img/augenpflege.png" alt="Augenpflege" />
+          <h3>Augenpflege</h3>
+        </article>
+        <article class="service-card" data-target="acc-feet">
+          <img src="assets/img/fusspflege.png" alt="Fußpflege" />
+          <h3>Fußpflege</h3>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="section reveal-up">
+    <div class="section-inner">
+      <h2 class="section-title">Preise</h2>
+
+      <details id="acc-face" class="acc premium">
+        <summary>Gesichtsbehandlung</summary>
+        <ul class="acc-list">
+          <li><strong>Basis</strong><div class="price">65 €</div></li>
+          <li><strong>Gesicht + Hals + Dekolleté</strong><div class="price">81 €</div></li>
+        </ul>
+      </details>
+
+      <details id="acc-body" class="acc premium">
+        <summary>Körper</summary>
+        <ul class="acc-list">
+          <li><strong>Rückenbehandlung</strong><div class="price">81 €</div></li>
+        </ul>
+      </details>
+
+      <details id="acc-massage" class="acc premium">
+        <summary>Massagen</summary>
+        <ul class="acc-list">
+          <li><strong>10 Min</strong><div class="price">15 €</div></li>
+          <li><strong>30 Min</strong><div class="price">54 €</div></li>
+          <li><strong>60 Min</strong><div class="price">90 €</div></li>
+        </ul>
+      </details>
+
+      <details id="acc-mani" class="acc premium">
+        <summary>Maniküre</summary>
+        <ul class="acc-list">
+          <li><strong>Spa</strong><div class="price">40 €</div></li>
+          <li><strong>Klassisch</strong><div class="price">35 €</div></li>
+        </ul>
+      </details>
+
+      <details id="acc-eye" class="acc premium">
+        <summary>Augenpflege</summary>
+        <ul class="acc-list">
+          <li><strong>Brauen zupfen</strong><div class="price">15 €</div></li>
+          <li><strong>Brauen färben</strong><div class="price">15 €</div></li>
+          <li><strong>Wimpern färben</strong><div class="price">29 €</div></li>
+        </ul>
+      </details>
+
+      <details id="acc-feet" class="acc premium">
+        <summary>Fußpflege</summary>
+        <ul class="acc-list">
+          <li><strong>Basis</strong><div class="price">50 €</div></li>
+          <li><strong>Spa</strong><div class="price">65 €</div></li>
+          <li><strong>Lackieren</strong><div class="price">15 €</div></li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section reveal-up">
+    <div class="section-inner">
+      <h2 class="section-title">Kontakt & Öffnungszeiten</h2>
+      <div class="centered">
+        <p><strong>E‑Mail:</strong> kontakt@lune-beauty.example</p>
+        <p><strong>Telefon:</strong> +49 160 000000</p>
+        <p><strong>Öffnungszeiten:</strong> Mo–Fr 10–18 Uhr · Sa 10–16 Uhr</p>
+        <div class="bottom-cta-wrap">
+          <a class="cta-btn whatsapp" href="https://wa.me/YOURNUMBER" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="cta-btn email" href="mailto:kontakt@lune-beauty.example">E‑Mail</a>
+          <a class="cta-btn premium ai-cta" href="app.html">AI Premium Analyse</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">© <span id="year"></span> Lune Beauty</footer>
+
+  <script src="assets/js/ui.js"></script>
+</body>
+</html>

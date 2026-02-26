@@ -1,0 +1,2 @@
+
+#scrollProgress{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--gold),#9d7b2f);z-index:300;transition:width .1s linear}
