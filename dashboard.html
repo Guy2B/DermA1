@@ -1,1 +1,99 @@
-<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lune Beauty Dashboard</title><link rel="stylesheet" href="assets/css/dash.css"></head><body><header class="dash-header"><img src="assets/img/logo.png" class="brand-logo"/></header><main><h1>Dashboard v4</h1></main><script src="assets/js/dash.config.js"></script><script src="assets/js/dash.auth.js"></script><script src="assets/js/dash.app.js"></script></body></html>
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lune Beauty — Staff Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/dash.css" />
+</head>
+<body>
+  <!-- PASSWORD GATE -->
+  <div id="gate" class="gate" aria-hidden="true">
+    <div class="gate-card">
+      <h1>Staff Login</h1>
+      <p>Bitte Passwort eingeben, um das Dashboard zu öffnen.</p>
+      <div class="gate-row">
+        <input id="gateInput" type="password" placeholder="Passwort" autocomplete="current-password" />
+        <button id="gateBtn" class="btn primary">Öffnen</button>
+      </div>
+      <p id="gateMsg" class="gate-msg hidden">Falsches Passwort</p>
+      <label class="remember"><input type="checkbox" id="gateRemember" /> Eingeloggt bleiben (nur dieses Gerät)</label>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="dash-header">
+    <div class="hdr-left">
+      <h1>Dashboard</h1>
+    </div>
+    <div class="hdr-spacer"></div>
+    <div class="hdr-right">
+      <img src="assets/img/logo.png" alt="Lune Beauty" class="brand-logo" />
+    </div>
+  </header>
+
+  <!-- LAYOUT: SIDEBAR + MAIN -->
+  <div class="dash-wrap">
+    <aside class="sidebar">
+      <button class="navbtn active" data-panel="prompt">📝 Prompt</button>
+      <button class="navbtn" data-panel="results">📦 Results</button>
+      <button class="navbtn" data-panel="table">📊 Table</button>
+      <div class="side-foot">v5</div>
+    </aside>
+
+    <main class="main">
+      <!-- PROMPT PANEL -->
+      <section id="panel-prompt" class="panel active">
+        <h2>Prompt</h2>
+        <textarea id="promptText" rows="10" placeholder="Interne Notiz / Prompt ..."></textarea>
+        <div class="row">
+          <button id="btnGenerate" class="btn">Generate</button>
+          <button id="btnPromptClear" class="btn subtle">Clear</button>
+        </div>
+        <h3>Output</h3>
+        <pre id="promptOut" class="mono"></pre>
+      </section>
+
+      <!-- RESULTS PANEL -->
+      <section id="panel-results" class="panel">
+        <h2>Results Editor (JSON)</h2>
+        <div class="row">
+          <button id="btnResultsFormat" class="btn">Pretty‑Print</button>
+          <button id="btnResultsRestore" class="btn subtle">Restore Saved</button>
+        </div>
+        <textarea id="resultsJson" rows="16" class="mono" placeholder='{"score":90,"summary":"..."}'></textarea>
+      </section>
+
+      <!-- TABLE PANEL -->
+      <section id="panel-table" class="panel">
+        <h2>Table</h2>
+        <div class="row">
+          <button id="btnRowAdd" class="btn">+ Row</button>
+          <button id="btnExportCsv" class="btn">Export CSV</button>
+        </div>
+        <div class="table-wrap">
+          <table id="dashTable">
+            <thead>
+              <tr>
+                <th>Datum</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Plan</th>
+                <th>Score</th>
+                <th>Aktion</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="assets/js/dash.config.js"></script>
+  <script src="assets/js/dash.auth.js"></script>
+  <script src="assets/js/dash.app.js"></script>
+</body>
+</html>
