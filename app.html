@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Skin AI Analyse — Lune Beauty (Local)</title>
+  <title>Skin AI Analyse — Lune Beauty (Local v4.1)</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/app.css" />
 </head>
@@ -51,14 +51,14 @@
       <div class="row">
         <button id="btnStartCam" class="btn primary">📷 Kamera starten</button>
         <button id="btnFlipCam" class="btn">🔁 Kamera wechseln</button>
-        <label class="btn file">📁 Foto hochladen<input type="file" id="fileInput" accept="image/*" hidden /></label>
+        <label class="btn file" id="lblUpload">📁 Foto hochladen<input type="file" id="fileInput" accept="image/*" hidden /></label>
         <button id="btnCapture" class="btn" disabled>📸 Aufnehmen</button>
       </div>
-      <p id="permMsg" class="perm hidden">Kamerazugriff nicht möglich. Du kannst stattdessen ein Foto hochladen.</p>
+      <p id="permMsg" class="perm hidden">Kamerazugriff nicht möglich. Bitte **Foto hochladen** verwenden.</p>
     </section>
 
     <!-- PREVIEW MODAL -->
-    <div id="previewModal" class="modal hidden">
+    <div id="previewModal" class="modal hidden" aria-hidden="true">
       <div class="modal-card preview">
         <canvas id="previewCan" width="720" height="720"></canvas>
         <div class="row"><button id="btnUsePhoto" class="btn primary">Dieses Foto verwenden</button><button id="btnRetake" class="btn subtle">Erneut aufnehmen</button></div>
@@ -68,7 +68,7 @@
     <!-- STEP 2: LOCAL ANALYSIS -->
     <section id="step2" class="panel step">
       <h2>Schritt 2 — Analyse (lokal)</h2>
-      <p class="hint">Die Analyse findet vollständig **im Browser** statt. Es werden keine Daten an Server übertragen.</p>
+      <p class="hint">Die Analyse findet vollständig im Browser statt. Es werden keine Daten an Server übertragen.</p>
       <div class="row"><button id="btnAnalyze" class="btn primary" disabled>⚙️ Analyse starten</button></div>
 
       <div class="analysisWrap hidden" id="analysisWrap">
@@ -86,7 +86,7 @@
       </div>
     </section>
 
-    <!-- STEP 3: WIZARD (gleich wie v3) -->
+    <!-- STEP 3: WIZARD (wie v4) -->
     <section id="step3" class="panel step">
       <h2>Schritt 3 — Personalisierung</h2>
       <form id="wizForm" class="wizard">
@@ -127,11 +127,11 @@
       </form>
     </section>
 
-    <!-- STEP 4: PAYMENT (wie v3, SDK on-demand) -->
+    <!-- STEP 4: PAYMENT (optional) -->
     <section id="step4" class="panel step"><h2>Schritt 4 — Zahlung</h2>
       <div id="paypal-standard" class="pay-card"><h3>Standard</h3><div class="paypal-btn" id="ppStd"></div></div>
       <div id="paypal-premium" class="pay-card"><h3>Premium</h3><div class="paypal-btn" id="ppPrem"></div></div>
-      <p class="note">PayPal JS SDK wird hier geladen. Setze <code>window.PAYPAL_CLIENT_ID</code> in <code>assets/js/app.local.js</code>.</p>
+      <p class="note">PayPal JS SDK wird hier geladen. Setze <code>window.PAYPAL_CLIENT_ID</code> falls benötigt.</p>
     </section>
 
     <!-- STEP 5: THANK YOU -->
